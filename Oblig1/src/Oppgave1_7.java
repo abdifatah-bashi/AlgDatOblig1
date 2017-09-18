@@ -14,7 +14,10 @@ public class Oppgave1_7 {
 
 
        //modus(tempArray);
-     print(delSortering(tempArray));
+
+      // print(oddArray(tempArray));
+
+
 
 
 
@@ -27,6 +30,10 @@ public class Oppgave1_7 {
 
     }
 
+
+    /*
+    Oppgave 1
+     */
     public static int min(int[] inputArray) {
         if (inputArray.length < 1) {
             throw new NoSuchElementException("Tabellen er tom!");
@@ -45,6 +52,10 @@ public class Oppgave1_7 {
         }
         return inputArray[0];
     }
+
+    /*
+    Hvor mange ombyttinger vi gjør.
+     */
 
 
     public static int ombyttinger(int[] inputArray) {
@@ -68,6 +79,9 @@ public class Oppgave1_7 {
         }
         return antall;
     }
+    /*
+    Meotde som bytter plass til to elementer.
+     */
 
     public static void bytt(int[] inputArray, int i, int j) {
         int temp = inputArray[i];
@@ -75,6 +89,9 @@ public class Oppgave1_7 {
         inputArray[j] = temp;
     }
 
+    /*
+    Helpe metode som printer ut verdiene til array
+     */
 
     public static void print(int[] array) {
         for (int i = 0; i < array.length; i++) {
@@ -93,6 +110,9 @@ public class Oppgave1_7 {
         }
         return tempArray;
     }
+    /*
+    Oppgave 2
+     */
 
     // Metode som finner modus tallet dvs. tallet som forekommer ofte.
     public static int modus(int[] inputArray) {
@@ -118,6 +138,10 @@ public class Oppgave1_7 {
         }
         return modus;
     }
+
+    /*
+    Oppgave 3
+     */
     //Modus versjon 2
     public static int modus2(int[] inputArray) {
         if(inputArray.length < 1){
@@ -158,28 +182,14 @@ public class Oppgave1_7 {
 
    /*
    Oppgave 4.
-    */
-   public static int[] delSortering(int [] inputArray){
-       int []odd= new int [inputArray.length];
+Sitter fast med oppgave 4.
 
-       int [] even = new int [inputArray.length];
-       for (int i = 0; i <inputArray.length ; i++) {
-
-           if(inputArray[i] % 2!= 0){
-               odd[i]= inputArray[i];
-           } else even[i]= inputArray[i];
-
-           while(odd[i] != 0 || even[i] !=0){
-               int [] temp = new int [inputArray.length];
-               temp[i]=
-
-
-           }
-
-
-       }
-       return odd;
+ */
+   public static int [] delSortering(int [] inputArray ){
+       int [] tempArray = new int [inputArray.length];
+       return tempArray;
    }
+
 
 
 
