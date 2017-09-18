@@ -11,8 +11,14 @@ public class Oppgave1_7 {
         // print(tempArray);
         // min(tempArray);
 
-        System.out.println(mode(tempArray));
-        System.out.println(modus(tempArray));
+
+
+       //modus(tempArray);
+     print(delSortering(tempArray));
+
+
+
+      //  System.out.println(modus(tempArray));
 
         // System.out.println("Antall byttinger er: " + ombyttinger(randomArray(6)));
 
@@ -89,14 +95,17 @@ public class Oppgave1_7 {
     }
 
     // Metode som finner modus tallet dvs. tallet som forekommer ofte.
-    public static int modus(int[] a) {
-        int modus = a[0];
+    public static int modus(int[] inputArray) {
+      if(inputArray.length < 1 || !erSortert(inputArray)){
+          throw new IllegalStateException("Tabellen er tom eller ikke-sortert ");
+      }
+        int modus = inputArray[0];
         int maks = 0;
-        for (int i = 0; i < a.length; i++) {
-            int verdi = a[i];
+        for (int i = 0; i < inputArray.length; i++) {
+            int verdi = inputArray[i];
             int antall = 0;
-            for (int j = 0; j < a.length; j++) {
-                if (a[j] == verdi) {
+            for (int j = 0; j < inputArray.length; j++) {
+                if (inputArray[j] == verdi) {
                     antall++;
                 }
                 if (antall > maks) {
@@ -109,6 +118,70 @@ public class Oppgave1_7 {
         }
         return modus;
     }
+    //Modus versjon 2
+    public static int modus2(int[] inputArray) {
+        if(inputArray.length < 1){
+            throw new IllegalStateException("Tabellen er tom!");
+        }
+        int modus = inputArray[0];
+        int maks = 0;
+        for (int i = 0; i < inputArray.length; i++) {
+            int verdi = inputArray[i];
+            int antall = 0;
+            for (int j = 0; j < inputArray.length; j++) {
+                if (inputArray[j] == verdi) {
+                    antall++;
+                }
+                if (antall > maks) {
+                    modus = verdi;
+                    maks = antall;
+                }
+
+            }
+
+        }
+        return modus;
+    }
+    //Metode som sjkeker at tabellen er sortert i stigende rekkefølge.
+    public static boolean erSortert(int [] inputArray){
+        for (int i = 0; i <inputArray.length-1 ; i++) {
+            int j=i+1;
+            if(inputArray[i] > inputArray[j]) return false;
+
+        }
+        return true;
+    }
+
+
+
+
+
+   /*
+   Oppgave 4.
+    */
+   public static int[] delSortering(int [] inputArray){
+       int []odd= new int [inputArray.length];
+
+       int [] even = new int [inputArray.length];
+       for (int i = 0; i <inputArray.length ; i++) {
+
+           if(inputArray[i] % 2!= 0){
+               odd[i]= inputArray[i];
+           } else even[i]= inputArray[i];
+
+           while(odd[i] != 0 || even[i] !=0){
+               int [] temp = new int [inputArray.length];
+               temp[i]=
+
+
+           }
+
+
+       }
+       return odd;
+   }
+
+
 
 
 }
