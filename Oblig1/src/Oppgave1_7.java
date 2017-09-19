@@ -7,14 +7,21 @@ import java.util.Random;
 public class Oppgave1_7 {
     public static void main(String[] args) {
         int[] tempArray = new int[]{1, 2, 3, 4};
-        char[] character = new char[]{'a', 'b', 'c', 'd', 'e'};
+        char[] character = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         print(tempArray);
         System.out.println();
         //  rotateNumber(tempArray);
         // print(tempArray);
         System.out.println();
-        rotation(character, -2);
+        rotation(character, 3);
         printChar(character);
+        System.out.println();
+
+        String a = flett("ABCDFGJ", "IJ");
+        //String b = flett("IJKLMN","OPQ");
+        //String c = flett("","AB");
+        //System.out.println(a + " " + b + " " + c);
+        System.out.println(a);
 
         //modus(tempArray);
 
@@ -148,9 +155,9 @@ public class Oppgave1_7 {
         return tempArray;
     }
 
-   /*
-   Oppgave 5. rotasjon av tabell på en enhet
-    */
+    /*
+    Oppgave 5. rotasjon av tabell på en enhet
+     */
 // Her roteres tabellen en enhet mot venstre.
     public static void leftRotation(char[] arr) {
         char[] tempArray = new char[arr.length];
@@ -180,10 +187,10 @@ public class Oppgave1_7 {
 
     }
 
-/*
-Generelt rotasjonsmetode som roterer tabell elementene k enhet mot høyre eller venstre.
- Hvis k > 1 roteres det mot høyre ellers mot venstre.
- */
+    /*
+    Generelt rotasjonsmetode som roterer tabell elementene k enhet mot høyre eller venstre.
+     Hvis k > 1 roteres det mot venstre ellers mot høyre.
+     */
     public static void rotation(char arr[], int k) {
         if (k < 1) {
             for (int i = 0; i > k; i--) {
@@ -197,6 +204,64 @@ Generelt rotasjonsmetode som roterer tabell elementene k enhet mot høyre eller 
         }
 
     }
+    /*
+    Oppgave 7.
+     */
+
+    public static String flett(String s, String t) {
+        String resultat = "";
+        if (s.length() >= t.length()) {
+            for (int i = 0; i < s.length(); i++) {
+                if (i < t.length()) {
+                    resultat += s.charAt(i);
+                    resultat += t.charAt(i);
+                } else resultat += s.charAt(i);
+
+            }
+
+        } else if (t.length() >= s.length()) {
+            for (int i = 0; i < t.length(); i++) {
+                if (i < s.length()) {
+                    resultat += s.charAt(i);
+                    resultat += t.charAt(i);
+                } else
+                    resultat += t.charAt(i);
+
+            }
+
+            return resultat;
+
+
+        }
+
+        return resultat;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
     Her samles  det alle hjelpe metode som vi bruker her i klassen
