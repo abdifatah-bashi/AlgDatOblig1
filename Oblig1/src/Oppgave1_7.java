@@ -12,16 +12,16 @@ public class Oppgave1_7 {
         //System.out.println();
         //  rotateNumber(tempArray);
         // print(tempArray);
-        System.out.println();
-        rotation(character, 3);
-        printChar(character);
-        System.out.println();
+        //System.out.println();
+        //rotation(character, 3);
+        //printChar(character);
+       // System.out.println();
 
-        String a = flett("ABCDFGJ", "IJ");
+
         //String b = flett("IJKLMN","OPQ");
         //String c = flett("","AB");
         //System.out.println(a + " " + b + " " + c);
-        System.out.println(a);
+
         String []temp = {"AFH", "BAH", "DT", "IA"};
         flettStringTabell(temp);
         //modus(tempArray);
@@ -239,8 +239,8 @@ public class Oppgave1_7 {
     }
     public static void  flettStringTabell(String []s) {
         String resultat = "";
-        for (int i = 0; i < s.length; i++) {
-            for (int j = 0; j <s.length ; j++) {
+        for (int i = 0; i < s[i].substring(i).length(); i++) {
+            for (int j = 0; j <s[i].substring(j).length(); j++) {
                 resultat+= s[j].charAt(i);
 
             }
@@ -254,13 +254,6 @@ public class Oppgave1_7 {
         }
         System.out.printf("" + resultat);
     }
-
-
-
-
-
-
-
 
 
 
