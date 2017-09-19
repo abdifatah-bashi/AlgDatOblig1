@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -22,8 +23,9 @@ public class Oppgave1_7 {
         //String c = flett("","AB");
         //System.out.println(a + " " + b + " " + c);
 
-        String []temp = {"AFH", "BAH", "DT", "IA"};
-        flettStringTabell(temp);
+//        String []temp = {"AFH", "BAH", "DT", "IA"};
+//        flettStringTabell(temp);
+        tidsSortering(randPerm(100000));
         //modus(tempArray);
 
         // print(oddArray(tempArray));
@@ -257,9 +259,108 @@ public class Oppgave1_7 {
 
 
 
+/*
+Oppgave 8
+ */
+
+public static void tidsSortering(int[] array) {
+    //Beregner tiden utvalgssortering tok
+    long startTid1 = System.currentTimeMillis();
+    //print(array);
+    selectionSort(array);
+    long tidsForskjell1 = System.currentTimeMillis() - startTid1;
+    System.out.println("utvalgssorteringen tok: " + tidsForskjell1);
+
+    //Beregner tiden Insertingssortering tok
+
+    long startTid2= System.currentTimeMillis();
+    insertionSort(array);
+    long tidsForskjell2 = System.currentTimeMillis() - startTid2;
+    System.out.println("Insertingssortering tok: " + tidsForskjell2);
+
+    //Beregner tiden kvikkSoterings tok
+    /*long startTid3= System.currentTimeMillis();
+    quickSort(array, 0, array.length-1);
+    long tidsForskjell3 = System.currentTimeMillis()- startTid3;
+    System.out.println("Insertingssortering tok: " + tidsForskjell3);
+*/
 
 
 
+}
+
+/*
+Her finnes det ulike sorterings alogrithmer
+ */
+
+// Utvalgssortering(Selection Sort)
+
+    public static int [] selectionSort(int []array){
+        int minVerdi= array[0];
+        for (int i = 0; i <array.length ; i++) {
+            int min= i;
+            for (int j = i+1; j <array.length ; j++) {
+                if(array[j] < array[min]){
+                    min = j;
+
+                }
+
+            }
+
+            bytt(array, i , min );
+
+        }
+
+        return array;
+    }
+
+
+    // Insertingssortering (Insertion sort)
+
+    public static int [] insertionSort(int [] array ){
+        for (int i = 0; i <array.length ; i++) {
+            int element = array[i];
+            int j= i-1;
+            while(j >= 0 &&  array[j] > element){
+                array[j+1] = array[j];
+                j--;
+            }
+            array[j+1] = element;
+
+        }
+        return array;
+
+    }
+
+    //Kvikksortering
+    public static void quickSort(int []a, int start, int end){
+        if(start < end){
+            int pp = partition(a, start, end);
+            quickSort(a, start, pp-1);
+            quickSort(a, pp+1, end);
+
+        }
+    }
+
+    public static int partition(int []a, int start, int end) {
+        int pivot = a[end];
+        int i = start - 1;
+        for (int j = start; j <= end - 1; j++) {
+
+            if (a[j] <= pivot) {
+                i++;
+                //Swappping the values of i and j
+                int ival = a[i];
+                int jval = a[j];
+                a[i] = jval;
+                a[j] = ival;
+
+            }
+        }
+
+        return i+1;
+
+    }
 
 
 
@@ -330,6 +431,26 @@ public class Oppgave1_7 {
         int temp = inputArray[i];
         inputArray[i] = inputArray[j];
         inputArray[j] = temp;
+    }
+
+    /*
+    Meotde som generer og permuterer random array elementer
+     */
+
+    public static int[] randPerm(int n)  // en effektiv versjon
+    {
+        Random r = new Random();         // en randomgenerator
+        int[] a = new int[n];            // en tabell med plass til n tall
+
+        Arrays.setAll(a, i -> i + 1);    // legger inn tallene 1, 2, . , n
+
+        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
+        {
+            int i = r.nextInt(k + 1);        // en tilfeldig tall fra 0 til k
+            bytt(a, k, i);                   // bytter om
+        }
+
+        return a;                        // permutasjonen returneres
     }
 
 
