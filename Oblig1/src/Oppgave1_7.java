@@ -7,25 +7,34 @@ import java.util.Random;
  */
 public class Oppgave1_7 {
     public static void main(String[] args) {
-        int[] tempArray = new int[]{1, 2, 3, 4};
+        int[] tempArray = new int[]{5, 2, 3, 1, 4};
         char[] character = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-       // print(tempArray);
+        String t = flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
+        //String tt = flettStringTabell("OD", "LE", "AA" ,"VV");
+        System.out.println(t);
+
+        // print(tempArray);
         //System.out.println();
         //  rotateNumber(tempArray);
         // print(tempArray);
         //System.out.println();
         //rotation(character, 3);
         //printChar(character);
-       // System.out.println();
+        // System.out.println();
 
+        delSortering(tempArray);
+        // System.out.println("");
 
+        // selectionSort(tempArray);
+        // quickSort(tempArray, 0, tempArray.length-1);
+        print(tempArray);
         //String b = flett("IJKLMN","OPQ");
         //String c = flett("","AB");
         //System.out.println(a + " " + b + " " + c);
 
 //        String []temp = {"AFH", "BAH", "DT", "IA"};
 //        flettStringTabell(temp);
-        tidsSortering(randPerm(100000));
+        //tidsSortering(randPerm(100000));
         //modus(tempArray);
 
         // print(oddArray(tempArray));
@@ -42,7 +51,8 @@ public class Oppgave1_7 {
 
     /*
     Oppgave 1.
-     */
+  Her finner vi mninst verdien av en tabell.
+   */
     public static int min(int[] inputArray) {
         if (inputArray.length < 1) {
             throw new NoSuchElementException("Tabellen er tom!");
@@ -121,9 +131,10 @@ public class Oppgave1_7 {
 
     /*
     Oppgave 3
+    Modus mer generelt.
      */
-    //Modus versjon 2/generelt
-    public static int modus2(int[] inputArray) {
+
+    public static int modusV2(int[] inputArray) {
         if (inputArray.length < 1) {
             throw new IllegalStateException("Tabellen er tom!");
         }
@@ -150,18 +161,39 @@ public class Oppgave1_7 {
 
     /*
     Oppgave 4.
- Sitter fast med oppgave 4.
+ Den metoden skal dele parametertabellen a i to sorterte deler.
+ Venstre del skal inneholde oddetallene sortert og høyre del partallene sortert.
+
 
   */
-    public static int[] delSortering(int[] inputArray) {
-        int[] tempArray = new int[inputArray.length];
-        return tempArray;
+    public static void delSortering(int[] inputArray) {
+        int left = 0;
+        int right = inputArray.length - 1;
+        while (left < right) {
+
+            if (inputArray[left] % 2 != 0 && left < right) {
+                left++;
+            } else if (inputArray[left] % 2 == 0 && left < right) {
+                bytt(inputArray, left, right);
+                right--;
+            }
+
+
+        }
+
+        quickSort(inputArray, 0, right);
+        quickSort(inputArray, right + 1, inputArray.length - 1);
+
+
     }
 
+
     /*
-    Oppgave 5. rotasjon av tabell på en enhet
+    Oppgave 5.
+   Den metoden roteres  elementene i en tabell.
+   En rotasjon på én enhet gjøres ved at det siste elementet blir det første og alle de andre forskyves én enhet mot høyre
      */
-// Her roteres tabellen en enhet mot venstre.
+
     public static void leftRotation(char[] arr) {
         char[] tempArray = new char[arr.length];
         char temp = arr[arr.length - 1];
@@ -176,8 +208,9 @@ public class Oppgave1_7 {
 
     /*
     Oppgave 6
+    Rotering, mer generelt
      */
-    // Her roteres tabellen en enhet mot høyre.
+
     public static void rightRotation(char arr[]) {
         char[] tempArray = new char[arr.length];
         char temp = arr[0];
@@ -209,6 +242,8 @@ public class Oppgave1_7 {
     }
     /*
     Oppgave 7.
+    Den skal «flette» sammen tegnstrengene s og t slik at resultatet blir en tegnstreng der annethvert tegn kommer fra s og annethvert fra t.
+    Hvis s og t har ulik lengde, skal det som er «til overs» legges inn bakerst.
      */
 
     public static String flett(String s, String t) {
@@ -239,142 +274,37 @@ public class Oppgave1_7 {
 
         return resultat;
     }
-    public static void  flettStringTabell(String []s) {
+
+    public static String flett(String... s) {
         String resultat = "";
-        for (int i = 0; i < s[i].substring(i).length(); i++) {
-            for (int j = 0; j <s[i].substring(j).length(); j++) {
-                resultat+= s[j].charAt(i);
+        int longest = longestString(s);
+        for (int i = 0; i < longest; i++) {
+            for (int j = 0; j < s.length; j++) {
+                if (i < s[j].length())
+                    resultat += s[j].charAt(i);
 
             }
 
 
-
-
-
-
-
         }
-        System.out.printf("" + resultat);
+
+        return resultat;
     }
 
-
-
-/*
-Oppgave 8
- */
-
-public static void tidsSortering(int[] array) {
-    //Beregner tiden utvalgssortering tok
-    long startTid1 = System.currentTimeMillis();
-    //print(array);
-    selectionSort(array);
-    long tidsForskjell1 = System.currentTimeMillis() - startTid1;
-    System.out.println("utvalgssorteringen tok: " + tidsForskjell1);
-
-    //Beregner tiden Insertingssortering tok
-
-    long startTid2= System.currentTimeMillis();
-    insertionSort(array);
-    long tidsForskjell2 = System.currentTimeMillis() - startTid2;
-    System.out.println("Insertingssortering tok: " + tidsForskjell2);
-
-    //Beregner tiden kvikkSoterings tok
-    /*long startTid3= System.currentTimeMillis();
-    quickSort(array, 0, array.length-1);
-    long tidsForskjell3 = System.currentTimeMillis()- startTid3;
-    System.out.println("Insertingssortering tok: " + tidsForskjell3);
-*/
-
-
-
-}
-
-/*
-Her finnes det ulike sorterings alogrithmer
- */
-
-// Utvalgssortering(Selection Sort)
-
-    public static int [] selectionSort(int []array){
-        int minVerdi= array[0];
-        for (int i = 0; i <array.length ; i++) {
-            int min= i;
-            for (int j = i+1; j <array.length ; j++) {
-                if(array[j] < array[min]){
-                    min = j;
-
-                }
-
+    public static int longestString(String... s) {
+        int length = 0;
+        for (int i = 0; i < s.length; i++) {
+            if (length < s[i].length()) {
+                length = s[i].length();
             }
 
-            bytt(array, i , min );
-
         }
-
-        return array;
-    }
-
-
-    // Insertingssortering (Insertion sort)
-
-    public static int [] insertionSort(int [] array ){
-        for (int i = 0; i <array.length ; i++) {
-            int element = array[i];
-            int j= i-1;
-            while(j >= 0 &&  array[j] > element){
-                array[j+1] = array[j];
-                j--;
-            }
-            array[j+1] = element;
-
-        }
-        return array;
-
-    }
-
-    //Kvikksortering
-    public static void quickSort(int []a, int start, int end){
-        if(start < end){
-            int pp = partition(a, start, end);
-            quickSort(a, start, pp-1);
-            quickSort(a, pp+1, end);
-
-        }
-    }
-
-    public static int partition(int []a, int start, int end) {
-        int pivot = a[end];
-        int i = start - 1;
-        for (int j = start; j <= end - 1; j++) {
-
-            if (a[j] <= pivot) {
-                i++;
-                //Swappping the values of i and j
-                int ival = a[i];
-                int jval = a[j];
-                a[i] = jval;
-                a[j] = ival;
-
-            }
-        }
-
-        return i+1;
+        return length;
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     /*
@@ -389,17 +319,50 @@ Her finnes det ulike sorterings alogrithmer
             System.out.print(" | " + array[i]);
         }
     }
-/*
-    Helpe metode som printer ut verdiene til en char array.
-     */
 
+    /*
+        Helpe metode som printer ut verdiene til en char array.
+         */
     public static void printChar(char[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.print(" | " + array[i]);
         }
     }
+
+
     /*
-    hjlepe metode som genererer random tabell elementer.
+    Kvikksorterings metode. Vi bruker den som hjelpemetode i oppgave 4. 
+     */
+    public static void quickSort(int[] a, int start, int end) {
+        if (start < end) {
+            int pp = partition(a, start, end);
+            quickSort(a, start, pp - 1);
+            quickSort(a, pp + 1, end);
+
+        }
+    }
+
+    public static int partition(int[] a, int start, int end) {
+        int pivot = a[end];
+        int i = start - 1;
+        for (int j = start; j <= end - 1; j++) {
+
+            if (a[j] <= pivot) {
+                i++;
+
+                bytt(a, i, j);
+            }
+        }
+
+        bytt(a, i + 1, end);
+        return i + 1;
+    }
+
+
+
+    
+    /*
+    Hjlepemetode som genererer random tabell elementer.
      */
 
     public static int[] randomArray(int n) {
@@ -437,8 +400,7 @@ Her finnes det ulike sorterings alogrithmer
     Meotde som generer og permuterer random array elementer
      */
 
-    public static int[] randPerm(int n)  // en effektiv versjon
-    {
+    public static int[] randPerm(int n) {
         Random r = new Random();         // en randomgenerator
         int[] a = new int[n];            // en tabell med plass til n tall
 
