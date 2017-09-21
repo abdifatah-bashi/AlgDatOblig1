@@ -14,6 +14,14 @@ public class Oblig1 {
         String t = flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
         //String tt = flettStringTabell("OD", "LE", "AA" ,"VV");
         System.out.println(t);
+        int[] e = {8,9,2,10,5,6,1,7,3,4};
+        int []a = new int[] {6,5,4,3,2,1};
+        int[] f = {1,8,9,2,10,5,6,3,7,4};
+       print(e);
+       min(e);
+        System.out.println("Verdien som ligger i første plass er_ " +e[0]);
+        System.out.println("");
+        System.out.println(ombyttinger(a));
 
         // print(tempArray);
         //System.out.println();
@@ -25,8 +33,8 @@ public class Oblig1 {
         // System.out.println();
 
 
-        delsortering(tempArray);
-        print(tempArray);
+//        delsortering(tempArray);
+//        print(tempArray);
         // System.out.println("");
 
         // selectionSort(tempArray);
@@ -61,20 +69,22 @@ public class Oblig1 {
         if (inputArray.length < 1) {
             throw new NoSuchElementException("Tabellen er tom!");
         }
-        for (int i = 0; i < inputArray.length - 1; i++) {
-
+        for (int i = 0; i < inputArray.length-1 ; i++) {
             for (int j = i + 1; j < inputArray.length; j++) {
 
-                if (inputArray[i] > inputArray[j]) {
-                    bytt(inputArray, i, j);
-
+                int min = i;
+                if (inputArray[i] > inputArray[i + 1]) {
+                    min = i + 1;
+                    bytt(inputArray, i, i + 1);
                 }
+
+
             }
-
-
         }
         return inputArray[0];
     }
+
+
 
     /*
    Metode som beregner antall ombyttinger som blir gjort.
@@ -89,8 +99,8 @@ public class Oblig1 {
 
                 if (inputArray[i] > inputArray[j]) {
                     min = j;
-                    antall++;
                     bytt(inputArray, i, j);
+                    antall++;
 
 
                 }
