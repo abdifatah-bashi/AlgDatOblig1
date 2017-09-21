@@ -1,3 +1,5 @@
+package Oblig1;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -5,9 +7,9 @@ import java.util.Random;
 /**
  * Created by Bashi, Abdifatah Ali on 18.09.2017.
  */
-public class Oppgave1_7 {
+public class Oblig1 {
     public static void main(String[] args) {
-        int[] tempArray = new int[]{5, 2, 3, 1, 4};
+        int[] tempArray = new int[]{5, -2, 11, 3, -4, 22,1, 4,9};
         char[] character = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         String t = flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
         //String tt = flettStringTabell("OD", "LE", "AA" ,"VV");
@@ -22,12 +24,14 @@ public class Oppgave1_7 {
         //printChar(character);
         // System.out.println();
 
-        delSortering(tempArray);
+
+        delsortering(tempArray);
+        print(tempArray);
         // System.out.println("");
 
         // selectionSort(tempArray);
         // quickSort(tempArray, 0, tempArray.length-1);
-        print(tempArray);
+
         //String b = flett("IJKLMN","OPQ");
         //String c = flett("","AB");
         //System.out.println(a + " " + b + " " + c);
@@ -79,7 +83,7 @@ public class Oppgave1_7 {
     public static int ombyttinger(int[] inputArray) {
         int antall = 0;
 
-        for (int i = 0; i < inputArray.length - 1; i++) {
+        for (int i = 0; i < inputArray.length ; i++) {
             int min = 0;
             for (int j = i + 1; j < inputArray.length; j++) {
 
@@ -105,7 +109,7 @@ public class Oppgave1_7 {
      */
 
     // Metode som finner modus tallet dvs. tallet som forekommer ofte.
-    public static int modus(int[] inputArray) {
+    public static int modus1(int[] inputArray) {
         if (inputArray.length < 1 || !erSortert(inputArray)) {
             throw new IllegalStateException("Tabellen er tom eller ikke-sortert ");
         }
@@ -134,7 +138,7 @@ public class Oppgave1_7 {
     Modus mer generelt.
      */
 
-    public static int modusV2(int[] inputArray) {
+    public static int modus2(int[] inputArray) {
         if (inputArray.length < 1) {
             throw new IllegalStateException("Tabellen er tom!");
         }
@@ -166,14 +170,14 @@ public class Oppgave1_7 {
 
 
   */
-    public static void delSortering(int[] inputArray) {
+    public static void delsortering(int[] inputArray) {
         int left = 0;
         int right = inputArray.length - 1;
         while (left < right) {
 
-            if (inputArray[left] % 2 != 0 && left < right) {
+            if (Math.abs(inputArray[left]) % 2 != 0 && left < right) {
                 left++;
-            } else if (inputArray[left] % 2 == 0 && left < right) {
+            } else if (Math.abs(inputArray[left]) % 2 == 0 && left  < right) {
                 bytt(inputArray, left, right);
                 right--;
             }
@@ -182,7 +186,7 @@ public class Oppgave1_7 {
         }
 
         quickSort(inputArray, 0, right);
-        quickSort(inputArray, right + 1, inputArray.length - 1);
+        quickSort(inputArray, right , inputArray.length - 1);
 
 
     }
@@ -194,7 +198,7 @@ public class Oppgave1_7 {
    En rotasjon på én enhet gjøres ved at det siste elementet blir det første og alle de andre forskyves én enhet mot høyre
      */
 
-    public static void leftRotation(char[] arr) {
+    public static void rotasjon(char[] arr) {
         char[] tempArray = new char[arr.length];
         char temp = arr[arr.length - 1];
 
@@ -227,7 +231,7 @@ public class Oppgave1_7 {
     Generelt rotasjonsmetode som roterer tabell elementene k enhet mot høyre eller venstre.
      Hvis k > 1 roteres det mot venstre ellers mot høyre.
      */
-    public static void rotation(char arr[], int k) {
+    public static void rotasjon(char arr[], int k) {
         if (k < 1) {
             for (int i = 0; i > k; i--) {
                 rightRotation(arr);
@@ -235,7 +239,7 @@ public class Oppgave1_7 {
             }
         }
         for (int i = 0; i < k; i++) {
-            leftRotation(arr);
+            rotasjon(arr);
 
         }
 
@@ -304,11 +308,11 @@ public class Oppgave1_7 {
     }
 
 
-    
+
 
 
     /*
-    Her samles  det alle hjelpe metode som vi bruker her i klassen
+    Her samles  det alle hjelpe metode som vi bruker her i klassen.
      */
      /*
     Helpe metode som printer ut verdiene til en int array.
@@ -331,7 +335,7 @@ public class Oppgave1_7 {
 
 
     /*
-    Kvikksorterings metode. Vi bruker den som hjelpemetode i oppgave 4. 
+    Kvikksorterings metode. Vi bruker den som hjelpemetode i oppgave 4.
      */
     public static void quickSort(int[] a, int start, int end) {
         if (start < end) {
@@ -360,7 +364,7 @@ public class Oppgave1_7 {
 
 
 
-    
+
     /*
     Hjlepemetode som genererer random tabell elementer.
      */
