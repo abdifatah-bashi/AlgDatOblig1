@@ -15,13 +15,23 @@ public class Oblig1 {
         //String tt = flettStringTabell("OD", "LE", "AA" ,"VV");
         System.out.println(t);
         int[] e = {8,9,2,10,5,6,1,7,3,4};
-        int []a = new int[] {6,5,4,3,2,1};
+        int []a = new int[] {1,3,3,5, 5,5,6,};
         int[] f = {1,8,9,2,10,5,6,3,7,4};
-       print(e);
-       min(e);
-        System.out.println("Verdien som ligger i første plass er_ " +e[0]);
-        System.out.println("");
-        System.out.println(ombyttinger(a));
+       int [] b = new int[] {1,2,3,4,5};
+        int []c = new int[] {4, 9, 3, 6, 1, -5, 7, 8, 10, 2};
+        int []d = new int[] {2, 5, 8, 4, 3, 10, 1, 7, 6, 9};
+       //print(e);
+       // min(e);
+       //print(e);
+        System.out.println(modus1(a));
+
+//        System.out.println("Verdien som ligger i første plass er_ " +e[0]);
+//        System.out.println("");
+//        System.out.println(ombyttinger(b));
+//        System.out.println(ombyttinger(c));
+//        System.out.println(ombyttinger(d));
+//
+//        System.out.println(minV2(c));
 
         // print(tempArray);
         //System.out.println();
@@ -69,18 +79,16 @@ public class Oblig1 {
         if (inputArray.length < 1) {
             throw new NoSuchElementException("Tabellen er tom!");
         }
-        for (int i = 0; i < inputArray.length-1 ; i++) {
-            for (int j = i + 1; j < inputArray.length; j++) {
+        int sistindex=inputArray.length-1 ;
+        for (int i = sistindex; i > 0 ; i--) {
 
-                int min = i;
-                if (inputArray[i] > inputArray[i + 1]) {
-                    min = i + 1;
-                    bytt(inputArray, i, i + 1);
+                if (inputArray[i] < inputArray[i-1]) {
+                    bytt(inputArray, i-1, i);
                 }
 
 
             }
-        }
+
         return inputArray[0];
     }
 
@@ -92,19 +100,15 @@ public class Oblig1 {
 
     public static int ombyttinger(int[] inputArray) {
         int antall = 0;
+        if (inputArray.length < 1) {
+            throw new NoSuchElementException("Tabellen er tom!");
+        }
+        int sistindex=inputArray.length-1 ;
+        for (int i = sistindex; i > 0 ; i--) {
 
-        for (int i = 0; i < inputArray.length ; i++) {
-            int min = 0;
-            for (int j = i + 1; j < inputArray.length; j++) {
-
-                if (inputArray[i] > inputArray[j]) {
-                    min = j;
-                    bytt(inputArray, i, j);
-                    antall++;
-
-
-                }
-
+            if (inputArray[i] < inputArray[i-1]) {
+                bytt(inputArray, i-1, i);
+                antall++;
             }
 
 
@@ -128,7 +132,7 @@ public class Oblig1 {
         for (int i = 0; i < inputArray.length; i++) {
             int verdi = inputArray[i];
             int antall = 0;
-            for (int j = 0; j < inputArray.length; j++) {
+            for (int j = i+1; j < inputArray.length; j++) {
                 if (inputArray[j] == verdi) {
                     antall++;
                 }
@@ -200,6 +204,29 @@ public class Oblig1 {
 
 
     }
+
+    public static int minV2(int [] inputArray) {
+
+        int min = 0;
+        int minVerdi = inputArray[min];
+        for (int i = 1; i < inputArray.length; i++) {
+            if (inputArray[i] < minVerdi) {
+                min = i;
+                bytt(inputArray, i, min);
+                inputArray[i]= inputArray[i-1];
+            }
+
+
+        }
+        return inputArray[min];
+    }
+
+
+
+
+
+
+
 
 
     /*
