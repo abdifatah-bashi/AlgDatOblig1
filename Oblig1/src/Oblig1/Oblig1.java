@@ -10,6 +10,7 @@ import java.util.Random;
 public class Oblig1 {
     public static void main(String[] args) {
         int[] tempArray = new int[]{5, -2, 11, 3, -4, 22,1, 4,9};
+
         char[] character = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         String t = flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
         //String tt = flettStringTabell("OD", "LE", "AA" ,"VV");
@@ -18,12 +19,14 @@ public class Oblig1 {
         int []a = new int[] {1,3,3,5, 5,5,6,};
         int[] f = {1,8,9,2,10,5,6,3,7,4};
        int [] b = new int[] {1,2,3,4,5};
-        int []c = new int[] {4, 9, 3, 6, 1, -5, 7, 8, 10, 2};
+        int []c = new int[] {4, 9, 3, 6, 1, -5, 7, 8, 10, 2,-2};
         int []d = new int[] {2, 5, 8, 4, 3, 10, 1, 7, 6, 9};
+     delsortering(c);
+        print(c);
+
        //print(e);
        // min(e);
        //print(e);
-        System.out.println(modus1(a));
 
 //        System.out.println("Verdien som ligger i første plass er_ " +e[0]);
 //        System.out.println("");
@@ -186,21 +189,25 @@ public class Oblig1 {
   */
     public static void delsortering(int[] inputArray) {
         int left = 0;
-        int right = inputArray.length - 1;
+        int right = inputArray.length-1 ;
+
         while (left < right) {
 
-            if (Math.abs(inputArray[left]) % 2 != 0 && left < right) {
+            if (Math.abs(inputArray[left]) % 2 != 0 ) {
                 left++;
-            } else if (Math.abs(inputArray[left]) % 2 == 0 && left  < right) {
+            } else if (Math.abs(inputArray[left]) % 2 == 0 ) {
                 bytt(inputArray, left, right);
                 right--;
             }
 
 
         }
+        System.out.println("left index  is: " + left + " and right index is: " + right);
+        print(inputArray);
+        System.out.println();
 
-        quickSort(inputArray, 0, right);
-        quickSort(inputArray, right , inputArray.length - 1);
+        quickSort(inputArray, 0, left);
+        quickSort(inputArray, left+1 , inputArray.length-1 );
 
 
     }
@@ -386,7 +393,7 @@ public class Oblig1 {
     public static int partition(int[] a, int start, int end) {
         int pivot = a[end];
         int i = start - 1;
-        for (int j = start; j <= end - 1; j++) {
+        for (int j = start; j <= end-1; j++) {
 
             if (a[j] <= pivot) {
                 i++;
@@ -455,6 +462,10 @@ public class Oblig1 {
 
         return a;                        // permutasjonen returneres
     }
+
+
+
+
 
 
 }

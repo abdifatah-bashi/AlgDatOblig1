@@ -23,10 +23,10 @@ public class Oblig1Test
     public static void main(String[] args)
     {
         int antallFeil = 0;
-        antallFeil += oppgave1();
+       // antallFeil += oppgave1();
        // antallFeil += oppgave2();
-        //antallFeil += oppgave3();
-       // antallFeil += oppgave4();
+       // antallFeil += oppgave3();
+        antallFeil += oppgave4();
        // antallFeil += oppgave5();
         //antallFeil += oppgave6();
         //antallFeil += oppgave7();
@@ -155,8 +155,7 @@ public class Oblig1Test
         int[] e = {1,2,3,4,5,6,7,7};
         int[] f = {1,1,2,2,2,3,4,4,5,6,6,6,6,7};
 
-        if (Oblig1.modus1(a) != 0
-                || Oblig1.modus1(b) != 1
+        if (Oblig1.modus1(b) != 1
                 || Oblig1.modus1(d) != 1
                 || Oblig1.modus1(e) != 7
                 || Oblig1.modus1(f) != 6)
@@ -200,7 +199,7 @@ public class Oblig1Test
                     || Oblig1.modus2(c) != 1
                     || Oblig1.modus2(d) != 6
                     || Oblig1.modus2(e) != 5
-                    || Oblig1.modus2(f) != 3) {
+                    || Oblig1.modus2(f) != 2) {
                 System.out.println("Oppgave 3: c) Metoden gir feil resultat!");
                 antallFeil++;
 
