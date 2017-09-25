@@ -412,46 +412,66 @@ public class Oblig1 {
 
      */
 
-    public static void rotasjon(char[] arr, int k) {
-        try {
-            if (k < 1) {
-                for (int i = 0; i < Math.abs(k); i++) høyreRotasjon(arr);
-            } else {
-                for (int i = 0; i < k; i++) {
-                    venstreRotasjon(arr);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println();
+    public static void rotasjon(char[]arr, int k){
+        int n = arr.length;
+        if (n < 2) return;  //her sjekkes om tabellen er tom eller inneholder bare et element.
+
+        if ((k %= n) < 0) k += n;
+
+        if (k <= (n+1)/2)
+        {
+            char[] b = Arrays.copyOfRange(arr, n - k, n);
+            for (int i = n - 1; i >= k; i--) arr[i] = arr[i - k];
+            System.arraycopy(b, 0, arr, 0, k);
+        }
+        else
+        {
+            char[] b = Arrays.copyOfRange(arr, 0, n - k);
+            for (int i = 0; i < k; i++) arr[i] = arr[i + n - k];
+            System.arraycopy(b, 0, arr, k, n - k);
         }
     }
 
-    public static void høyreRotasjon(char arr[]) {
-
-        char temp = arr[0];
-
-        for (int i = 1; i <= arr.length - 1; i++) {
-
-            arr[i - 1] = arr[i];
-        }
-        arr[arr.length - 1] = temp;
-
-
-    }
-
-    public static void venstreRotasjon(char[] arr) {
-        try {
-            char temp = arr[arr.length - 1];
-
-            for (int i = arr.length - 1; i > 0; i--) {
-
-                arr[i] = arr[i - 1];
-            }
-            arr[0] = temp;
-        } catch (Exception e) {
-            System.out.println();
-        }
-    }
+//    public static void rotasjon(char[] arr, int k) {
+//        try {
+//            if (k < 1) {
+//                for (int i = 0; i < Math.abs(k); i++) høyreRotasjon(arr);
+//            } else {
+//                for (int i = 0; i < k; i++) {
+//                    venstreRotasjon(arr);
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println();
+//        }
+//    }
+//
+//    public static void høyreRotasjon(char arr[]) {
+//
+//        char temp = arr[0];
+//
+//        for (int i = 1; i <= arr.length - 1; i++) {
+//
+//            arr[i - 1] = arr[i];
+//        }
+//        arr[arr.length - 1] = temp;
+//
+//
+//    }
+//
+//    public static void venstreRotasjon(char[] arr) {
+//        try {
+//            char temp = arr[arr.length - 1];
+//
+//            for (int i = arr.length - 1; i > 0; i--) {
+//
+//                arr[i] = arr[i - 1];
+//            }
+//            arr[0] = temp;
+//        } catch (Exception e) {
+//            System.out.println();
+//        }
+//    }
 
 /*
 
