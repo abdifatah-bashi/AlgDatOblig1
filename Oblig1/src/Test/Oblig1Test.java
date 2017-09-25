@@ -1,7 +1,7 @@
 
 package Test;
 
-import Oblig1.Oblig1;
+import Oblig1.*;
 
 import java.util.Arrays;
 
@@ -26,9 +26,9 @@ public class Oblig1Test
        // antallFeil += oppgave1();
        // antallFeil += oppgave2();
        // antallFeil += oppgave3();
-        antallFeil += oppgave4();
-       // antallFeil += oppgave5();
-        //antallFeil += oppgave6();
+        //antallFeil += oppgave4();
+      // antallFeil += oppgave5();
+        antallFeil += oppgave6();
         //antallFeil += oppgave7();
 
         if (antallFeil == 0)
